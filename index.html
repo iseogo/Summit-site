@@ -56,21 +56,22 @@
     display: flex; align-items: center; gap: 0.65rem; text-decoration: none;
   }
   .nav-logo-icon {
-    width: 38px; height: 38px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-light));
-    border-radius: 8px;
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    border: 1px solid rgba(200,168,75,0.5);
+    border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .nav-logo-icon svg { width: 22px; height: 22px; fill: var(--navy); }
+  .nav-logo-icon svg { width: 32px; height: 36px; }
   .nav-logo-text { display: flex; flex-direction: column; }
   .nav-logo-text span:first-child {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.05rem; color: var(--white); line-height: 1.1;
-    letter-spacing: 0.01em;
+    font-size: 1.08rem; color: var(--white); line-height: 1.1;
+    letter-spacing: 0.04em;
   }
   .nav-logo-text span:last-child {
-    font-size: 0.6rem; color: var(--accent); letter-spacing: 0.12em;
+    font-size: 0.6rem; color: var(--accent); letter-spacing: 0.14em;
     text-transform: uppercase; font-weight: 600;
   }
   .nav-links { display: flex; align-items: center; gap: 2rem; }
@@ -605,7 +606,34 @@
   .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
   .footer-bottom a:hover { color: rgba(255,255,255,0.7); }
 
-  /* ─── RESPONSIVE ─── */
+  /* ─── CERT CARDS ─── */
+  .cert-card {
+    background: var(--white); border-radius: 16px;
+    padding: 1.5rem; border: 1px solid var(--silver);
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+  }
+  .cert-card:hover { transform: translateY(-4px); border-color: var(--blue-light); box-shadow: 0 12px 32px rgba(11,31,75,0.09); }
+  .cert-icon {
+    width: 52px; height: 52px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cert-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 0.2rem; }
+  .cert-issuer { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 0.5rem; }
+  .cert-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem; }
+  .cert-badge {
+    display: inline-flex; align-items: center;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.25rem 0.65rem; border-radius: 20px;
+    color: var(--blue); background: rgba(26,58,143,0.08);
+    border: 1px solid rgba(26,58,143,0.2);
+  }
+  @media (max-width: 1024px) {
+    #certifications .container > div:first-of-type + div { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 640px) {
+    #certifications .container > div:first-of-type + div { grid-template-columns: 1fr !important; }
+  }
   @media (max-width: 1024px) {
     .hero-inner { grid-template-columns: 1fr; }
     .hero-visual { display: none; }
@@ -638,8 +666,17 @@
   <div class="nav-inner">
     <a href="#" class="nav-logo">
       <div class="nav-logo-icon">
-        <!-- Cross/Plus icon -->
-        <svg viewBox="0 0 24 24"><path d="M12 2a1.5 1.5 0 0 1 1.5 1.5v7h7a1.5 1.5 0 0 1 0 3h-7v7a1.5 1.5 0 0 1-3 0v-7h-7a1.5 1.5 0 0 1 0-3h7v-7A1.5 1.5 0 0 1 12 2z"/></svg>
+        <svg viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Peak lines -->
+          <polyline points="4,18 11,10 18,14.5 22,10 26,14.5 33,10 40,18"
+            fill="none" stroke="#E8C96A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Shield -->
+          <path d="M22 19 L8 25 L8 36 Q8 44 22 47 Q36 44 36 36 L36 25 Z"
+            fill="none" stroke="#C8A84B" stroke-width="1.8"/>
+          <!-- Medical cross -->
+          <rect x="19" y="28" width="6" height="14" rx="2" fill="#C8A84B"/>
+          <rect x="14" y="33" width="16" height="5" rx="2" fill="#C8A84B"/>
+        </svg>
       </div>
       <div class="nav-logo-text">
         <span>Summit Healthcare Logistics</span>
@@ -649,6 +686,7 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#certifications">Credentials</a>
       <a href="#serve">Who We Serve</a>
       <a href="#process">Process</a>
       <a href="#cta" class="nav-cta">Request a Quote</a>
@@ -995,6 +1033,103 @@
   </div>
 </section>
 
+<!-- ─── CERTIFICATIONS ─── -->
+<section id="certifications" style="background:var(--offwhite); padding:6rem 0;">
+  <div class="container">
+    <div class="section-header centered">
+      <div class="section-label">Credentials &amp; Certifications</div>
+      <h2 class="section-title">Verified. Trained. <em>Ready.</em></h2>
+      <p class="section-desc">Every courier at Summit Healthcare Logistics is trained and certified to handle medical materials safely, legally, and professionally. These are not just credentials — they are your guarantee.</p>
+    </div>
+
+    <!-- cert cards grid -->
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-bottom:3rem;">
+
+      <div class="cert-card">
+        <div class="cert-icon" style="background:linear-gradient(135deg,#EEF3FF,#D6E0FF);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A3A8F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">HIPAA Certified</div>
+          <div class="cert-issuer">Health Insurance Portability &amp; Accountability Act</div>
+          <div class="cert-desc">Trained in patient privacy, protected health information handling, and healthcare data compliance.</div>
+          <div class="cert-badge">✓ Active</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon" style="background:linear-gradient(135deg,#FFF8EC,#FDEFC9);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">OSHA / Bloodborne Pathogens</div>
+          <div class="cert-issuer">Occupational Safety and Health Administration</div>
+          <div class="cert-desc">Certified in safe handling of biological specimens, sharps, and biohazardous materials per OSHA standards.</div>
+          <div class="cert-badge" style="color:#B8860B; background:rgba(184,134,11,0.1); border-color:rgba(184,134,11,0.3);">✓ Active</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon" style="background:linear-gradient(135deg,#EEFAF4,#C6F0DA);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A8C5B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">CMA — Certified Medication Aide</div>
+          <div class="cert-issuer">State Certification · 2027</div>
+          <div class="cert-desc">Certified to handle and document pharmaceutical materials with clinical-level accuracy and regulatory compliance.</div>
+          <div class="cert-badge" style="color:#1A8C5B; background:rgba(26,140,91,0.1); border-color:rgba(26,140,91,0.3);">✓ Active · Exp. 2027</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon" style="background:linear-gradient(135deg,#EEF3FF,#D6E0FF);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A3A8F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">CNA — Certified Nursing Assistant</div>
+          <div class="cert-issuer">State Certified · Iowa &amp; Nebraska</div>
+          <div class="cert-desc">Hands-on clinical training in patient care, infection control, and healthcare facility protocols.</div>
+          <div class="cert-badge">✓ Active</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon" style="background:linear-gradient(135deg,#FFF0F0,#FFD6D6);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#CC2222" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">CPR / First Aid / AED</div>
+          <div class="cert-issuer">American Red Cross · NSC · 2024</div>
+          <div class="cert-desc">Adult CPR, AED, and First Aid certified. BLS (Basic Life Support) credentialed for emergency response readiness.</div>
+          <div class="cert-badge" style="color:#CC2222; background:rgba(204,34,34,0.08); border-color:rgba(204,34,34,0.25);">✓ Active · 2024</div>
+        </div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-icon" style="background:linear-gradient(135deg,#F0F7FF,#CCE4FF);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1A5FA8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">Defensive Driving</div>
+          <div class="cert-issuer">Certified Safe Driver</div>
+          <div class="cert-desc">Professionally trained in defensive driving techniques to ensure safe, on-time delivery of sensitive medical cargo.</div>
+          <div class="cert-badge" style="color:#1A5FA8; background:rgba(26,95,168,0.08); border-color:rgba(26,95,168,0.25);">✓ Active</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- trust banner -->
+    <div style="background:linear-gradient(135deg,var(--navy),var(--blue)); border-radius:16px; padding:2rem 2.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem;">
+      <div>
+        <div style="font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--white); margin-bottom:0.3rem;">Every certification. Every delivery. Every time.</div>
+        <div style="font-size:0.85rem; color:rgba(255,255,255,0.6);">Our credentials are on file and available upon request for contract and compliance review.</div>
+      </div>
+      <a href="#cta" class="btn-primary" style="flex-shrink:0;">Request a Quote</a>
+    </div>
+  </div>
+</section>
+
 <!-- ─── WHO WE SERVE ─── -->
 <section id="serve">
   <div class="container">
@@ -1173,7 +1308,7 @@
           <h3>Inquiry Received!</h3>
           <p>Thank you for reaching out. We'll review your request and contact you within one business day with a custom proposal. We look forward to partnering with your facility.</p>
           <br/>
-          <p style="font-size:0.8rem; color: rgba(255,255,255,0.4);">Questions? Call us directly: <strong style="color:rgba(255,255,255,0.7);">(402) 953-1033</strong></p>
+          <p style="font-size:0.8rem; color: rgba(255,255,255,0.4);">Questions? Call us directly: <strong style="color:rgba(255,255,255,0.7);">+1 (402) 953-1033</strong></p>
         </div>
       </div>
 
@@ -1181,11 +1316,11 @@
       <div style="display:flex; gap:2rem; justify-content:center; margin-top:2.5rem; flex-wrap:wrap;">
         <a href="tel:+14029531033" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.9rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(200,168,75,1)"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-          (402) 953-1033
+          +1 (402) 953-1033
         </a>
-        <a href="/cdn-cgi/l/email-protection#19506a6a787278376a7c767e76596a6c7474706d717c78756d717a786b7c75767e706a6d707a6a377a7674" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.9rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
+        <a href="mailto:Issaka.seogo@summithealthcarelogistic.com" style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.9rem;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(200,168,75,1)"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          <span class="__cf_email__" data-cfemail="074e7474666c662974626860684774726a6a6e736f62666b736f646675626b68606e74736e64742964686a">[email&#160;protected]</span>
+          Issaka.seogo@summithealthcarelogistic.com
         </a>
         <span style="display:flex;align-items:center;gap:0.5rem;color:rgba(255,255,255,0.6);font-size:0.9rem;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(200,168,75,1)"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -1203,7 +1338,14 @@
       <div class="footer-brand">
         <a href="#" class="nav-logo">
           <div class="nav-logo-icon">
-            <svg viewBox="0 0 24 24" fill="var(--navy)"><path d="M12 2a1.5 1.5 0 0 1 1.5 1.5v7h7a1.5 1.5 0 0 1 0 3h-7v7a1.5 1.5 0 0 1-3 0v-7h-7a1.5 1.5 0 0 1 0-3h7v-7A1.5 1.5 0 0 1 12 2z"/></svg>
+            <svg viewBox="0 0 44 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="4,18 11,10 18,14.5 22,10 26,14.5 33,10 40,18"
+                fill="none" stroke="#E8C96A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 19 L8 25 L8 36 Q8 44 22 47 Q36 44 36 36 L36 25 Z"
+                fill="none" stroke="#C8A84B" stroke-width="1.8"/>
+              <rect x="19" y="28" width="6" height="14" rx="2" fill="#C8A84B"/>
+              <rect x="14" y="33" width="16" height="5" rx="2" fill="#C8A84B"/>
+            </svg>
           </div>
           <div class="nav-logo-text">
             <span>Summit Healthcare Logistics</span>
@@ -1214,11 +1356,11 @@
         <div class="footer-contact">
           <a href="tel:+14029531033" class="fc-item">
             <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-            (402) 953-1033
+            +1 (402) 953-1033
           </a>
-          <a href="/cdn-cgi/l/email-protection#743d0707151f155a07111b131b34070119191d001c111518001c17150611181b131d07001d17075a171b19" class="fc-item">
+          <a href="mailto:Issaka.seogo@summithealthcarelogistic.com" class="fc-item">
             <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-            <span class="__cf_email__" data-cfemail="fcb58f8f9d979dd28f99939b93bc8f899191958894999d9088949f9d8e9990939b958f88959f8fd29f9391">[email&#160;protected]</span>
+            Issaka.seogo@summithealthcarelogistic.com
           </a>
           <span class="fc-item">
             <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -1245,7 +1387,7 @@
           <li><a href="#serve">Who We Serve</a></li>
           <li><a href="#process">How It Works</a></li>
           <li><a href="#cta">Request a Quote</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#abe2d8d8cac0ca85d8cec4ccc4ebd8dec6c6c2dfc3cecac7dfc3c8cad9cec7c4ccc2d8dfc2c8d885c8c4c6">Contact Us</a></li>
+          <li><a href="mailto:Issaka.seogo@summithealthcarelogistic.com">Contact Us</a></li>
         </ul>
       </div>
     </div>
@@ -1256,7 +1398,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Form submission — sends real email via Formspree
   async function submitForm() {
     const name     = document.getElementById('name').value.trim();
@@ -1308,7 +1450,7 @@
         btn.disabled = false;
       }
     } catch (err) {
-      alert('Network error. Please email us directly at Issaka.seogo@summithealthcarelogistics.com');
+      alert('Network error. Please email us directly at Issaka.seogo@summithealthcarelogistic.com');
       btn.textContent = 'Submit Inquiry — Request a Quote';
       btn.disabled = false;
     }
