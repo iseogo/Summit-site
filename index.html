@@ -1399,7 +1399,6 @@
 </footer>
 
 <script>
-  // Form submission — sends real email via Formspree
   async function submitForm() {
     const name     = document.getElementById('name').value.trim();
     const email    = document.getElementById('email').value.trim();
@@ -1418,25 +1417,23 @@
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
-    const payload = {
-      _replyto:      email,
-      _subject:      'New Quote Request — Summit Healthcare Logistics',
-      Name:          name,
-      Title:         document.getElementById('title').value.trim()    || '—',
-      Facility:      facility,
-      'Facility Type': document.getElementById('facility-type').value || '—',
-      Email:         email,
-      Phone:         document.getElementById('phone').value.trim()    || '—',
-      'Service Needed': document.getElementById('service').value      || '—',
-      Message:       document.getElementById('message').value.trim()  || '—',
-    };
+    const formData = new FormData();
+    formData.append('_replyto', email);
+    formData.append('_subject', 'New Quote Request — Summit Healthcare Logistics');
+    formData.append('Name', name);
+    formData.append('Title', document.getElementById('title').value.trim() || '—');
+    formData.append('Facility', facility);
+    formData.append('Facility_Type', document.getElementById('facility-type').value || '—');
+    formData.append('Email', email);
+    formData.append('Phone', document.getElementById('phone').value.trim() || '—');
+    formData.append('Service_Needed', document.getElementById('service').value || '—');
+    formData.append('Message', document.getElementById('message').value.trim() || '—');
 
     try {
-      // Formspree endpoint — replace YOUR_FORM_ID after activating at formspree.io
       const res = await fetch('https://formspree.io/f/mykbpgpe', {
-        method:  'POST',
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload),
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
       });
 
       if (res.ok) {
@@ -1444,4 +1441,35 @@
         document.getElementById('form-success').style.display = 'block';
         document.getElementById('cta').scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else {
-        const data = awa
+        const data = await res.json();
+        alert('Error: ' + (data.error || 'Please try again or call us at +1 (402) 953-1033'));
+        btn.textContent = 'Submit Inquiry — Request a Quote';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      alert('Network error. Please call us directly at +1 (402) 953-1033 or email Issaka.seogo@summithealthcarelogistic.com');
+      btn.textContent = 'Submit Inquiry — Request a Quote';
+      btn.disabled = false;
+    }
+  }
+
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+        observer.unobserve(el.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .why-card, .serve-card, .process-step, .pillar, .cert-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
